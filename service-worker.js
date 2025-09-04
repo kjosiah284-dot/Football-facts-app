@@ -1,7 +1,7 @@
 self.addEventListener("install", e => {
   e.waitUntil(
     caches.open("football-facts").then(cache => {
-      return cache.addAll([
+      return cache.addAll(urlsToCache);[
         "./",
         "./index.html",
         "./style.css",
