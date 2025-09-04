@@ -1,7 +1,7 @@
 {
   "name": "Football Facts",
   "short_name": "Facts⚽",
-  "start_url": ".",
+  "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#0d1b2a",
   "theme_color": "#f4d03f",
