@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Football Fanatics Hub | Facts, Quizzes & Fun</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Add this in the <head> section -->
+<meta name="description" content="Football Fanatics Hub - Interactive football quizzes, amazing facts, and live scores. Test your football knowledge today!">
+<meta name="keywords" content="football, soccer, quiz, facts, live scores, champions league, world cup">
+<meta property="og:title" content="Football Fanatics Hub">
+<meta property="og:description" content="Your ultimate football destination with quizzes and facts">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #1a73e8;
+            --secondary: #e91e63;
+            --dark: #121212;
+            --light: #f5f5f5;
+            --success: #4CAF50;
+            --warning: #FFC107;
+        }
+
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), #0d47a1);
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: cover;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .logo i {
+            font-size: 2.5rem;
+            margin-right: 1rem;
+            color: white;
+        }
+
+        .logo h1 {
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1575361204480-aadea25e6e68?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 4rem 2rem;
+            text-align: center;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero h2 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+            background: #d81b60;
+        }
+
+        .section-title {
+            text-align: center;
+            margin: 3rem 0 2rem;
+            font-size: 2rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .feature-card {
+            background: #1e1e1e;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature-card i {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .quiz-container {
+            background: #1e1e1e;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .quiz-progress {
+            height: 10px;
+            background: #333;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .quiz-progress-bar {
+            height: 100%;
+            background: var(--primary);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        .quiz-question {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .quiz-options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .quiz-option {
+            background: #2a2a2a;
+            padding: 1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .quiz-option:hover {
+            background: #333;
+            transform: translateX(5px);
+        }
+
+        .quiz-option.selected {
+            background: var(--primary);
+        }
+
+        .quiz-option.correct {
+            background: var(--success);
+        }
+
+        .quiz-option.incorrect {
+            background: var(--secondary);
+        }
+
+        .quiz-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .facts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .fact-card {
+            background: #1e1e1e;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            border-left: 4px solid var(--primary);
+        }
+
+        .fact-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .fact-card h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .live-score {
+            background: #1e1e1e;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .match {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid #333;
+        }
+
+        .match:last-child {
+            border-bottom: none;
+        }
+
+        .teams {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .team {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .team-logo {
+            width: 30px;
+            height: 30px;
+            background: #333;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+
+        .score {
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .time {
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        footer {
+            background: #0a0a0a;
+            padding: 3rem 1.5rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--primary);
+        }
+
+        .copyright {
+            color: #aaa;
+            font-size: 0.9rem;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            nav {
+                gap: 1rem;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <i class="fas fa-futbol"></i>
+            <h1>Football Fanatics Hub</h1>
+        </div>
+        <nav>
+            <a href="#"><i class="fas fa-home"></i> Home</a>
+            <a href="#"><i class="fas fa-question-circle"></i> Quizzes</a>
+            <a href="#"><i class="fas fa-lightbulb"></i> Facts</a>
+            <a href="#"><i class="fas fa-trophy"></i> Live Scores</a>
+            <a href="#"><i class="fas fa-history"></i> History</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <section class="hero">
+            <h2>Your Ultimate Football Destination</h2>
+            <p>Discover amazing football facts, test your knowledge with quizzes, and stay updated with live scores from around the world.</p>
+            <a href="#" class="btn">Start Exploring</a>
+        </section>
+
+        <h2 class="section-title">Features</h2>
+        <div class="features">
+            <div class="feature-card">
+                <i class="fas fa-question-circle"></i>
+                <h3>Interactive Quizzes</h3>
+                <p>Test your football knowledge with our engaging and challenging quizzes.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-lightbulb"></i>
+                <h3>Amazing Facts</h3>
+                <p>Discover fascinating facts about football history, players, and records.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-trophy"></i>
+                <h3>Live Updates</h3>
+                <p>Stay updated with live scores, match schedules, and tournament news.</p>
+            </div>
+        </div>
+
+        <h2 class="section-title">Football Quiz</h2>
+        <div class="quiz-container">
+            <div class="quiz-header">
+                <div class="quiz-progress">
+                    <div class="quiz-progress-bar" id="quiz-progress"></div>
+                </div>
+                <div class="quiz-score">Score: <span id="score">0</span></div>
+            </div>
+            <div class="quiz-question" id="question">Which country has won the most FIFA World Cups?</div>
+            <div class="quiz-options" id="options">
+                <div class="quiz-option" data-correct="true">Brazil</div>
+                <div class="quiz-option" data-correct="false">Germany</div>
+                <div class="quiz-option" data-correct="false">Italy</div>
+                <div class="quiz-option" data-correct="false">Argentina</div>
+            </div>
+            <div class="quiz-footer">
+                <div class="quiz-counter">Question <span id="current">1</span> of <span id="total">5</span></div>
+                <button class="btn" id="next-btn">Next Question</button>
+            </div>
+        </div>
+
+        <h2 class="section-title">Football Facts</h2>
+        <div class="facts-grid">
+            <div class="fact-card">
+                <h3>World Cup Record</h3>
+                <p>Brazil is the only nation to have played in every FIFA World Cup tournament.</p>
+            </div>
+            <div class="fact-card">
+                <h3>Fastest Goal</h3>
+                <p>The fastest goal in World Cup history was scored by Hakan Şükür of Turkey after just 11 seconds in 2002.</p>
+            </div>
+            <div class="fact-card">
+                <h3>Oldest Player</h3>
+                <p>Essam El-Hadary of Egypt is the oldest player to appear in a World Cup match at 45 years and 161 days.</p>
+            </div>
+            <div class="fact-card">
+                <h3>Most Goals</h3>
+                <p>Cristiano Ronaldo holds the record for most international goals with 123 goals for Portugal.</p>
+            </div>
+        </div>
+
+        <h2 class="section-title">Live Scores</h2>
+        <div class="live-score">
+            <div class="match">
+                <div class="teams">
+                    <div class="team">
+                        <div class="team-logo">RM</div>
+                        <span>Real Madrid</span>
+                    </div>
+                    <div class="score">2 - 1</div>
+                    <div class="team">
+                        <div class="team-logo">FCB</div>
+                        <span>Barcelona</span>
+                    </div>
+                </div>
+                <div class="time">75'</div>
+            </div>
+            <div class="match">
+                <div class="teams">
+                    <div class="team">
+                        <div class="team-logo">MCI</div>
+                        <span>Man City</span>
+                    </div>
+                    <div class="score">1 - 0</div>
+                    <div class="team">
+                        <div class="team-logo">LIV</div>
+                        <span>Liverpool</span>
+                    </div>
+                </div>
+                <div class="time">HT</div>
+            </div>
+            <div class="match">
+                <div class="teams">
+                    <div class="team">
+                        <div class="team-logo">PSG</div>
+                        <span>PSG</span>
+                    </div>
+                    <div class="score">0 - 0</div>
+                    <div class="team">
+                        <div class="team-logo">BAY</div>
+                        <span>Bayern</span>
+                    </div>
+                </div>
+                <div class="time">15'</div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="logo">
+                <i class="fas fa-futbol"></i>
+                <h2>Football Fanatics Hub</h2>
+            </div>
+            <p>Your go-to destination for all things football</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+            <div class="copyright">
+                &copy; 2023 Football Fanatics Hub. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Quiz functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const quizData = [
+                {
+                    question: "Which country has won the most FIFA World Cups?",
+                    options: ["Brazil", "Germany", "Italy", "Argentina"],
+                    correct: 0
+                },
+                {
+                    question: "Who is the all-time top scorer in the UEFA Champions League?",
+                    options: ["Lionel Messi", "Cristiano Ronaldo", "Raúl", "Robert Lewandowski"],
+                    correct: 1
+                },
+                {
+                    question: "Which club has won the most UEFA Champions League titles?",
+                    options: ["AC Milan", "Liverpool", "Bayern Munich", "Real Madrid"],
+                    correct: 3
+                },
+                {
+                    question: "Who won the 2022 FIFA World Cup?",
+                    options: ["France", "Brazil", "Argentina", "Germany"],
+                    correct: 2
+                },
+                {
+                    question: "Which player has won the most Ballon d'Or awards?",
+                    options: ["Lionel Messi", "Cristiano Ronaldo", "Michel Platini", "Johan Cruyff"],
+                    correct: 0
+                }
+            ];
+
+            let currentQuestion = 0;
+            let score = 0;
+            let selectedOption = null;
+
+            const questionElement = document.getElementById('question');
+            const optionsElement = document.getElementById('options');
+            const currentElement = document.getElementById('current');
+            const totalElement = document.getElementById('total');
+            const scoreElement = document.getElementById('score');
+            const nextButton = document.getElementById('next-btn');
+            const progressBar = document.getElementById('quiz-progress');
+
+            totalElement.textContent = quizData.length;
+
+            function loadQuestion() {
+                const currentQuizData = quizData[currentQuestion];
+                questionElement.textContent = currentQuizData.question;
+                optionsElement.innerHTML = '';
+                
+                currentQuizData.options.forEach((option, index) => {
+                    const optionElement = document.createElement('div');
+                    optionElement.classList.add('quiz-option');
+                    optionElement.textContent = option;
+                    optionElement.dataset.index = index;
+                    optionElement.addEventListener('click', selectOption);
+                    optionsElement.appendChild(optionElement);
+                });
+                
+                currentElement.textContent = currentQuestion + 1;
+                progressBar.style.width = `${((currentQuestion + 1) / quizData.length) * 100}%`;
+                nextButton.disabled = true;
+                selectedOption = null;
+            }
+
+            function selectOption(e) {
+                if (selectedOption) {
+                    selectedOption.classList.remove('selected');
+                }
+                
+                selectedOption = e.target;
+                selectedOption.classList.add('selected');
+                nextButton.disabled = false;
+            }
+
+            function nextQuestion() {
+                if (selectedOption) {
+                    const correctIndex = quizData[currentQuestion].correct;
+                    const options = document.querySelectorAll('.quiz-option');
+                    
+                    options.forEach(option => {
+                        option.classList.remove('correct', 'incorrect');
+                        if (parseInt(option.dataset.index) === correctIndex) {
+                     
